@@ -85,7 +85,7 @@ const Information = ({
           <LoadScript googleMapsApiKey={YEXT_PUBLIC_GOOGLE_API_KEY}>
             <GoogleMap center={coordinates} zoom={12}>
               <Marker position={coordinates} clickable={false} />
-              {nearByLocations.map((location: any) => {
+              {/* {nearByLocations.map((location: any) => {
                 return (
                   <Marker
                     key={location.id}
@@ -94,7 +94,7 @@ const Information = ({
                     icon={getMarkerPin(location)}
                   />
                 );
-              })}
+              })} */}
             </GoogleMap>
           </LoadScript>
         </div>
