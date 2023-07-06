@@ -33,7 +33,7 @@ export const config: TemplateConfig = {
       "dm_directoryChildren.meta.entityType",
     ],
     localization: {
-      locales: ["en_GB"],
+      locales: ["en"],
       primary: false,
     },
   },

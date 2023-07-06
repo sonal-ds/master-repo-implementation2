@@ -26,7 +26,7 @@ export const config: TemplateConfig = {
     },
     fields: ["id", "uid", "meta", "name", "slug"],
     localization: {
-      locales: ["en_GB"],
+      locales: ["en"],
       primary: false,
     },
   },

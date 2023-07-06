@@ -40,7 +40,7 @@ export const config: TemplateConfig = {
       "dm_directoryChildren.dm_directoryParents.dm_directoryParents.slug",
     ],
     localization: {
-      locales: ["en_GB"],
+      locales: ["en"],
       primary: false,
     },
   },
