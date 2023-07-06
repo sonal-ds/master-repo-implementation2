@@ -127,9 +127,10 @@ const Location: Template<LocationTemplateProps> = ({ document, __meta, breadcrum
         <AnalyticsScopeProvider name={document.name}>
           <PageLayout _site={_site} meta={__meta} template="country" locale={meta?.locale ? meta.locale : ""} devLink={slug}>
             <Breadcrumbs baseUrl="" breadcrumbs={breadcrumbs} />
-            {_site && 
-            <Information document={document} _site={_site} nearByLocations={nearByLocations} />
-}
+       
+            <Information document={document} _site={_site ? _site : ""} nearByLocations={nearByLocations} />
+            
+
             <NearByLocation
               apiKey={YEXT_PUBLIC_ANSWER_SEARCH_API_KEY}
               coordinate={document.yextDisplayCoordinate}
