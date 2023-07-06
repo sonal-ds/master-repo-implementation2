@@ -17,7 +17,7 @@ type InformationProps = {
 const Information = ({
   document,
   _site,
-  nearByLocations,
+  
 }: InformationProps) => {
   const getPosition = (location: LocationDocument) => {
     const lat = location.yextDisplayCoordinate.latitude;
@@ -72,7 +72,8 @@ const Information = ({
                     showHeader={true}
                     startOfWeek="today"
                     message={document.additionalHoursText}
-                    locale={_site.meta.locale}
+                    
+                    locale={_site.meta ? _site.meta?.locale :""}
                     timeZone={document.timezone}
                   />
                 </div>
