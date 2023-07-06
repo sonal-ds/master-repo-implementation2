@@ -124,7 +124,7 @@ const Location: Template<LocationTemplateProps> = ({ document, __meta, breadcrum
         enableTrackingCookie={YEXT_PUBLIC_ANALYTICS_ENABLE_TRACKING_COOKIE}
       >
         <AnalyticsScopeProvider name={document.name}>
-          <PageLayout _site={_site} meta={__meta} template="country" locale={meta.locale} devLink={slug}>
+          <PageLayout _site={_site} meta={__meta} template="country" locale={meta?.locale} devLink={slug}>
             <Breadcrumbs baseUrl="" breadcrumbs={breadcrumbs} />
             <Information document={document} _site={_site} nearByLocations={nearByLocations} />
 
