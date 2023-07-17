@@ -6,7 +6,7 @@ import { NearByLocationResult } from "../../types/Locator";
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
-import { getDirectionUrl, getLink, getRecursiveData } from "../../config/GlobalFunctions";
+import { getDirectionUrl, getLink } from "../../config/GlobalFunctions";
 import { Coordinate } from "../google-map/SearchProvider";
 import { fetch } from "@yext/pages/util";
 
@@ -61,7 +61,6 @@ const NearByLocation = ({ meta, coordinate, id, apiKey, setNearByLocations }: Ne
     fetch(`${config.endpoint}?${searchParams.toString()}`)
       .then((resp) => resp.json())
       .then((data) => {
-        console.log("data.response", data.response);
         setLocations(data.response.entities || []);
         setNearByLocations(data.response.entities || []);
       })

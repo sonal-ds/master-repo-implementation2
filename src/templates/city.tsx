@@ -1,13 +1,26 @@
 import * as React from "react";
-import { Template, GetPath, TemplateConfig, TemplateProps, TemplateRenderProps, GetHeadConfig, HeadConfig, TransformProps } from "@yext/pages";
+import {
+  Template,
+  GetPath,
+  TemplateConfig,
+  TemplateProps,
+  TemplateRenderProps,
+  GetHeadConfig,
+  HeadConfig,
+  TransformProps,
+} from "@yext/pages";
 import favicon from "../assets/images/favicon.ico";
-import { CityDocument, EntityMeta, LocationDocument, TemplateMeta } from "../types";
+import { CityDocument, LocationDocument, TemplateMeta } from "../types";
 import PageLayout from "../components/layout/PageLayout";
 import "../index.css";
 import { Address, Link } from "@yext/pages/components";
 import Breadcrumbs, { BreadcrumbItem } from "../components/common/Breadcrumbs";
 import { DirectoryParent } from "../types/DirectoryParent";
-import { getBreadcrumb, getDirectionUrl, getLink } from "../config/GlobalFunctions";
+import {
+  getBreadcrumb,
+  getDirectionUrl,
+  getLink,
+} from "../config/GlobalFunctions";
 
 export const config: TemplateConfig = {
   stream: {
@@ -54,12 +67,15 @@ export const getPath: GetPath<TemplateProps> = ({ document, __meta }) => {
   }
 };
 
-export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({ document }): HeadConfig => {
+export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
+  document,
+}): HeadConfig => {
   const metaTitle = `Dotsquares | ${document.name}`;
   return {
     title: metaTitle,
     charset: "UTF-8",
-    viewport: "width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=0",
+    viewport:
+      "width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=0",
     tags: [
       {
         type: "link",
@@ -95,7 +111,14 @@ type TransformData = TemplateRenderProps & {
 export const transformProps: TransformProps<TransformData> = async (data) => {
   const document = data.document as CityDocument;
   const directoryParents = document.dm_directoryParents || [];
-  const breadcrumbs = getBreadcrumb<DirectoryParent, CityDocument>(directoryParents, document, data.__meta, true, 0, true);
+  const breadcrumbs = getBreadcrumb<DirectoryParent, CityDocument>(
+    directoryParents,
+    document,
+    data.__meta,
+    true,
+    0,
+    true
+  );
   return { ...data, breadcrumbs };
 };
 
@@ -104,11 +127,21 @@ interface CityTemplateProps extends TransformData {
   document: CityDocument;
 }
 
-const City: Template<CityTemplateProps> = ({ document, __meta, breadcrumbs }: CityTemplateProps) => {
+const City: Template<CityTemplateProps> = ({
+  document,
+  __meta,
+  breadcrumbs,
+}: CityTemplateProps) => {
   const { meta, _site, slug, dm_directoryChildren } = document;
   return (
     <div id="main">
-      <PageLayout _site={_site} meta={__meta} template="country" locale={meta.locale} devLink={slug}>
+      <PageLayout
+        _site={_site}
+        meta={__meta}
+        template="country"
+        locale={meta.locale}
+        devLink={slug}
+      >
         <Breadcrumbs baseUrl="" breadcrumbs={breadcrumbs} />
         <h1>City</h1>
         <h3>Locations</h3>
@@ -116,23 +149,34 @@ const City: Template<CityTemplateProps> = ({ document, __meta, breadcrumbs }: Ci
           <div className="container">
             {dm_directoryChildren &&
               dm_directoryChildren.map((location: LocationDocument) => {
-                const url = getLink<LocationDocument>(location, __meta, true, 0, true);
-
+                const url = getLink<LocationDocument>(
+                  location,
+                  __meta,
+                  true,
+                  0,
+                  true
+                );
                 return (
                   <div className="city-location" key={location.id}>
                     <div className="location-card">
                       <div className="icon-row">
                         <div className="icon addressIcon"></div>
-                        <a className="location-name" href={`/${url}`}>
+                        <a className="location-name" href={`${url}`}>
                           {location.name}
                         </a>
                         <Address address={location.address} />
                       </div>
                       <div className="button-bx-detail">
-                        <Link className="button link" href={getDirectionUrl(location.address, location.googlePlaceId)}>
+                        <Link
+                          className="button link"
+                          href={getDirectionUrl(
+                            location.address,
+                            location.googlePlaceId
+                          )}
+                        >
                           Get Direction
                         </Link>
-                        <a className="button link" href={`/${url}`}>
+                        <a className="button link" href={`${url}`}>
                           View Details
                         </a>
                       </div>

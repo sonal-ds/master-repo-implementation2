@@ -365,7 +365,6 @@ const SearchProvider = ({
       }
 
       const allData = apiOffset ? [...oldLocations, ...results] : results;
-      console.log("apiOffset", apiOffset, oldLocations.length, results.length);
       const uniqueArray = allData.filter((obj, index, self) => {
         return index === self.findIndex((o) => o.id === obj.id);
       });

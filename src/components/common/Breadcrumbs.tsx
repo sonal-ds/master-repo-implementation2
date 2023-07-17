@@ -1,6 +1,7 @@
+import { Link } from "@yext/pages/components";
 import * as React from "react";
 import { ReactNode } from "react";
-import { Link } from "@yext/pages/components";
+// import { Link } from "@yext/pages/components";
 
 export interface BreadcrumbItemProps {
   name: string;
@@ -19,12 +20,11 @@ export interface BreadcrumbsProps {
 
 const BreadcrumbItem = (props: BreadcrumbItemProps) => {
   const { name, url } = props;
-  console.log("url", url);
   if (url) {
     return (
-      <a href={url}>
+      <Link href={url}>
         <span className="font-bold hover:underline hover:cursor-pointer">{name}</span>
-      </a>
+      </Link>
     );
   }
 

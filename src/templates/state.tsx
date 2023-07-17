@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Template, GetPath, TemplateConfig, TemplateProps, TemplateRenderProps, GetHeadConfig, HeadConfig, TransformProps } from "@yext/pages";
 import favicon from "../assets/images/favicon.ico";
-import { EntityMeta, StateDocument, TemplateMeta } from "../types";
+import { StateDocument, TemplateMeta } from "../types";
 import PageLayout from "../components/layout/PageLayout";
 import "../index.css";
 import { Link } from "@yext/pages/components";
@@ -113,9 +113,9 @@ const State: Template<StateTemplateProps> = ({ document, __meta, breadcrumbs }: 
 
               return (
                 <div className="directory-children-card" key={region.slug}>
-                  <a className="directory-children-name" href={`/${url}`}>
+                  <Link className="directory-children-name" href={`/${url}`}>
                     {region.name}
-                  </a>
+                  </Link>
                 </div>
               );
             })}

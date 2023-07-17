@@ -8,13 +8,7 @@ import { BreadcrumbItem } from "../components/common/Breadcrumbs";
 import { AddressType } from "@yext/pages/components";
 import { Coordinate } from "../components/google-map/SearchProvider";
 import { Tag } from "@yext/pages/*";
-type LinkParams = {
-  link: string;
-  mode?: string;
-  template?: string;
-  locale?: string;
-  devLink?: string;
-};
+
 export function slugify(slugString: string) {
   slugString.toLowerCase().toString();
   slugString = slugString.replace(/[&/\\#^+()$~%.'":*?<>{}!@]/, "");
@@ -44,11 +38,11 @@ export const getRecursiveData = <DataType>(element: DataType, meta: TemplateMeta
     if (element.dm_directoryParents) {
       element.dm_directoryParents.forEach((e: DataType, index: number) => {
         if (index >= skip) {
-          slug += `/${e.slug}`;
+          slug += `/${e.name}`;
         }
       });
     }
-    slug += `/${element.slug}${useHtml && !isDevelopment ? ".html" : ""}`;
+    slug += `/${element.name}${useHtml && !isDevelopment ? ".html" : ""}`;
   }
   return slug;
 };
@@ -131,7 +125,7 @@ export const getDirectionUrl = (address: AddressType, googlePlaceId = "", userLo
   if (address.line2) {
     address_string += address.line2 + ",";
   }
-  if (address.city) {
+  if (address?.city) {
     address_string += address.city + ",";
   }
   if (address.region) {

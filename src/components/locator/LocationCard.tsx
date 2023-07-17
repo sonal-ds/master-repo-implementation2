@@ -15,7 +15,9 @@ type LocationCardProps = {
 const LocationCard = ({ location, meta }: LocationCardProps) => {
   const { setInfoWindowContent, infoWindowContent, setHoveredLocation, hoveredLocation } = React.useContext(SearchContext);
   const cardRef = React.useRef<HTMLDivElement>(null);
+  console.log('location.rawData', location.rawData);
   const url = getLink<RawData>(location.rawData, meta, true, 0, true, true);
+  console.log('url', url)
 
   const scrollIntoView = (element: HTMLDivElement, offset: number) => {
     const elementPosition = element.getBoundingClientRect().top;
@@ -67,13 +69,13 @@ const LocationCard = ({ location, meta }: LocationCardProps) => {
     >
       <div className="icon-row">
         <div className="icon addressIcon"></div>
-        <Link className="location-name" href={url}>
+        <Link className="location-name" href={`${url}`}>
           {location.rawData.name}
         </Link>
         <Address address={location.rawData.address} />
       </div>
       <div className="button-bx-detail">
-        <Link className="button link" href={url}>
+        <Link className="button link" href={`${url}`}>
           View Details
         </Link>
         <Link className="button link" href={getDirectionUrl(location.rawData.address, location.rawData.googlePlaceId)}>

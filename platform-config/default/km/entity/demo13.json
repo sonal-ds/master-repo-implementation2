@@ -1,7 +1,7 @@
 {
   "$id": "demo13",
   "$schema": "https://schema.yext.com/config/km/entity/v1",
-  "primaryLocale": "en_GB",
+  "primaryLocale": "en",
   "content": {
     "address": {
       "city": "Belper",

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Address, Link, getDirections } from "@yext/pages/components";
+import { Address, Link } from "@yext/pages/components";
 import { LocationDocument, SiteData } from "../../types";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { Hours } from "../common/Hours/Hours";
@@ -11,21 +11,20 @@ import { LocationResult } from "../../types/Locator";
 type InformationProps = {
   document: LocationDocument;
   _site: SiteData;
-  nearByLocations: any;
+  nearByLocations: [];
 };
 
 const Information = ({
   document,
   _site,
-  
+  nearByLocations,
 }: InformationProps) => {
   const getPosition = (location: LocationDocument) => {
-    const lat = location.yextDisplayCoordinate.latitude;
-    const lng = location.yextDisplayCoordinate.longitude;
+    const lat = location.yextDisplayCoordinate && location.yextDisplayCoordinate.latitude;
+    const lng = location.yextDisplayCoordinate && location.yextDisplayCoordinate.longitude;
     return { lat, lng };
   };
   const coordinates = getPosition(document);
-  console.log("document", document);
   return (
     <div className="location-information">
       <div className="container">
@@ -72,8 +71,7 @@ const Information = ({
                     showHeader={true}
                     startOfWeek="today"
                     message={document.additionalHoursText}
-                    
-                    locale={_site.meta ? _site.meta?.locale :""}
+                    locale={_site.meta.locale}
                     timeZone={document.timezone}
                   />
                 </div>
@@ -86,16 +84,16 @@ const Information = ({
           <LoadScript googleMapsApiKey={YEXT_PUBLIC_GOOGLE_API_KEY}>
             <GoogleMap center={coordinates} zoom={12}>
               <Marker position={coordinates} clickable={false} />
-              {/* {nearByLocations.map((location: any) => {
+              {nearByLocations.map((location: LocationResult) => {
                 return (
                   <Marker
                     key={location.id}
-                    position={getPosition(location)}
+                    position={getPosition(location as unknown as LocationDocument)}
                     clickable={false}
                     icon={getMarkerPin(location)}
                   />
                 );
-              })} */}
+              })}
             </GoogleMap>
           </LoadScript>
         </div>

@@ -58,7 +58,9 @@ function collapseDays(hoursDays: HoursCollapseDay[]) {
     dayOfWeek: day.startDay === day.endDay ? `${day.startDay}` : `${day.startDay} - ${day.endDay}`,
   }));
 }
-function defaultIntervalStringsBuilder(dayData: HoursCollapseDay, locale: string, timeZone: string) {
+
+//for reminder what i changed:  function defaultIntervalStringsBuilder(dayData: HoursCollapseDay, locale: string, timeZone: string) {
+function defaultIntervalStringsBuilder(dayData: HoursCollapseDay, locale: string) {
   const intervalStrings = [];
   if (dayData.intervals.length === 0) {
     intervalStrings.push(
@@ -145,8 +147,6 @@ const Hours = (props: HoursProps) => {
   if (props.collapseDays) {
     hoursDays = collapseDays(hoursDays);
   }
-
-  // console.log("hoursDays", hoursDays);
   return (
     <React.Fragment>
       {isClient && (

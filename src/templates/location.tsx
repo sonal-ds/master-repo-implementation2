@@ -17,8 +17,6 @@ export const config: TemplateConfig = {
     $id: "location",
     filter: {
       entityTypes: ["location"],
-      savedFilterIds:["1220875870"]
-      
     },
     fields: [
       "id",
@@ -50,6 +48,7 @@ export const config: TemplateConfig = {
 };
 
 export const getPath: GetPath<TemplateProps> = ({ document, __meta }) => {
+  console.log('document', document);
   if (__meta.mode === "development") {
     return document.slug;
   } else {
@@ -116,7 +115,6 @@ interface LocationTemplateProps extends TransformData {
 const Location: Template<LocationTemplateProps> = ({ document, __meta, breadcrumbs }: LocationTemplateProps) => {
   const { meta, _site, slug } = document;
   const [nearByLocations, setNearByLocations] = React.useState([]);
-  console.log("getBreadcrumbSchema", getBreadcrumbSchema(breadcrumbs));
   return (
     <div id="main">
       <AnalyticsProvider
@@ -125,11 +123,9 @@ const Location: Template<LocationTemplateProps> = ({ document, __meta, breadcrum
         enableTrackingCookie={YEXT_PUBLIC_ANALYTICS_ENABLE_TRACKING_COOKIE}
       >
         <AnalyticsScopeProvider name={document.name}>
-          <PageLayout _site={_site} meta={__meta} template="country" locale={meta?.locale ? meta.locale : ""} devLink={slug}>
+          <PageLayout _site={_site} meta={__meta} template="country" locale={meta.locale} devLink={slug}>
             <Breadcrumbs baseUrl="" breadcrumbs={breadcrumbs} />
-       
-            <Information document={document} _site={_site ? _site : ""} nearByLocations={nearByLocations} />
-            
+            <Information document={document} _site={_site} nearByLocations={nearByLocations} />
 
             <NearByLocation
               apiKey={YEXT_PUBLIC_ANSWER_SEARCH_API_KEY}

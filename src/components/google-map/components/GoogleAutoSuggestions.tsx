@@ -83,8 +83,8 @@ const GoogleAutoSuggestions = () => {
   }, [googleLib]);
 
   const onClick = () => {
-    if (typeof window !== "undefined" && window?.navigator?.geolocation) {
-      window?.navigator?.geolocation.getCurrentPosition(function (position) {
+    if (typeof window !== "undefined" && window.navigator.geolocation) {
+      window.navigator.geolocation.getCurrentPosition(function (position) {
         setIsUserLocationAllowed(true);
         setUserLocation({
           latitude: position.coords.latitude,

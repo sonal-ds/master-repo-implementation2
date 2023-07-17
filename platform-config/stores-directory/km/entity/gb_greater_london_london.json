@@ -1,7 +1,7 @@
 {
   "$id": "stores-directory_gb_greater_london_london",
   "$schema": "https://schema.yext.com/config/km/entity/v1",
-  "primaryLocale": "en_GB",
+  "primaryLocale": "en",
   "content": {
     "dm_baseEntityCount": "6",
     "dm_childEntityIds": [

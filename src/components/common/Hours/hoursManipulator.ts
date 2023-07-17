@@ -36,9 +36,8 @@ class HoursIntervalManipulator {
       }
     }
   }
-  isOpened(locale = "en_GB") {
+  isOpened(locale = "en") {
     const now = moment.tz(moment(), this.timeZone);
-    console.log("this.getStartTime", this.getStartTime(locale), now.toLocaleString());
     if (this.getStartTime(locale) === now.toLocaleString()) {
       if (this.start.get("millisecond") <= now.get("millisecond") && this.end.get("millisecond") >= now.get("millisecond")) {
         return true;
@@ -58,7 +57,6 @@ class HoursIntervalManipulator {
     const now = moment.tz(moment(), this.timeZone);
     const today = now.get("day");
     const day = this.date.get("day");
-    console.log("today", now, this.date);
     if (day - today === 1) {
       return "Tomorrow";
     } else if (day - today === 0) {
