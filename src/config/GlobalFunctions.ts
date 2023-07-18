@@ -27,7 +27,7 @@ export const getLink = <Document>(document: Document, meta: TemplateMeta, isRecu
   if (!isDevelopment && isRecursive) {
     url = getRecursiveData(document, meta, skip, useHtml, useBaseUrl);
   }
-  return `${url}`;
+  return `/${slugify(url)}`;
 };
 
 export const getRecursiveData = <DataType>(element: DataType, meta: TemplateMeta, skip = 0, useHtml = false, useBaseUrl = false) => {
@@ -90,7 +90,7 @@ export const getBreadcrumb = <DataType, Document>(
     let slug = YEXT_PUBLIC_WEBSITE_URL;
     data.forEach((element: DataType, index: number) => {
       if (element.slug && index >= skip) {
-        slug += `${element.slug}${useHtml && !isDevelopment ? ".html" : ""}`;
+        slug += `/${element.slug}${useHtml && !isDevelopment ? ".html" : ""}`;
         breadcrumbs.push({
           slug: slug,
           name: element.name,
