@@ -53,7 +53,7 @@ export const transformProps: TransformProps<TemplateProps> = async (data) => {
  * take on the form: featureName/entityId
  */
 export const getPath: GetPath<TemplateProps> = ({ document, __meta }) => {
-  return __meta.mode === "production" ? document.slug : "index.html";
+  return __meta.mode === "production" ? document.slug + ".html" : "stores-directory.html";
 };
 
 /**

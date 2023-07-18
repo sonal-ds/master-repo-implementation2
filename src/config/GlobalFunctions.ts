@@ -17,6 +17,7 @@ export function slugify(slugString: string) {
   slugString = slugString.replaceAll("---", "-");
   slugString = slugString.replaceAll("--", "-");
   slugString = slugString.replaceAll("'", "");
+  slugString = slugString.replaceAll(",", "");
   return slugString.toLowerCase();
 }
 
@@ -26,7 +27,7 @@ export const getLink = <Document>(document: Document, meta: TemplateMeta, isRecu
   if (!isDevelopment && isRecursive) {
     url = getRecursiveData(document, meta, skip, useHtml, useBaseUrl);
   }
-  return `${url}`;
+  return `${slugify(url)}`;
 };
 
 export const getRecursiveData = <DataType>(element: DataType, meta: TemplateMeta, skip = 0, useHtml = false, useBaseUrl = false) => {
@@ -44,7 +45,7 @@ export const getRecursiveData = <DataType>(element: DataType, meta: TemplateMeta
     }
     slug += `/${element.name}${useHtml && !isDevelopment ? ".html" : ""}`;
   }
-  return slug;
+  return slugify(slug);
 };
 
 export const getBreadcrumb = <DataType, Document>(

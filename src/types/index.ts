@@ -32,6 +32,7 @@ export interface CountryDocument {
   slug: string;
   meta: EntityMeta;
   _site: SiteData;
+  dm_baseEntityCount: number;
   dm_directoryChildren: DirectoryChild[];
   dm_directoryParents: DirectoryParent[];
 }

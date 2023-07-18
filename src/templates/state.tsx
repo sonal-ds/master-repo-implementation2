@@ -7,7 +7,7 @@ import "../index.css";
 import { Link } from "@yext/pages/components";
 import { DirectoryChild } from "../types/DirectoryChild";
 import { DirectoryParent } from "../types/DirectoryParent";
-import { getBreadcrumb, getLink } from "../config/GlobalFunctions";
+import { getBreadcrumb, getLink, slugify } from "../config/GlobalFunctions";
 import Breadcrumbs, { BreadcrumbItem } from "../components/common/Breadcrumbs";
 
 export const config: TemplateConfig = {
@@ -28,9 +28,11 @@ export const config: TemplateConfig = {
       "dm_directoryParents.meta.entityType",
 
       /* DM children */
+      "dm_directoryChildren.dm_directoryChildren.name",
       "dm_directoryChildren.name",
       "dm_directoryChildren.slug",
       "dm_directoryChildren.meta.entityType",
+      "dm_directoryChildren.dm_directoryChildren.address"
     ],
     localization: {
       locales: ["en"],
@@ -98,22 +100,23 @@ interface StateTemplateProps extends TransformData {
 }
 
 const State: Template<StateTemplateProps> = ({ document, __meta, breadcrumbs }: StateTemplateProps) => {
-  const { meta, _site, slug, dm_directoryChildren } = document;
+  const { meta, _site, slug, dm_directoryChildren , dm_directoryParents } = document;
 
   return (
     <div id="main">
       <PageLayout _site={_site} meta={__meta} template="country" locale={meta.locale} devLink={slug}>
         <Breadcrumbs baseUrl="" breadcrumbs={breadcrumbs} />
         <h1>State</h1>
-
+       {}
         <div className="directory-children">
           {dm_directoryChildren &&
             dm_directoryChildren.map((region: DirectoryChild) => {
-              const url = region.slug;
+              console.log(dm_directoryChildren,'region')
+              const url =  dm_directoryParents.map((e)=>{ return(e.name + "/")}) + document.slug+ "/" + region.slug +".html";
 
               return (
                 <div className="directory-children-card" key={region.slug}>
-                  <Link className="directory-children-name" href={`/${url}`}>
+                  <Link className="directory-children-name" href={`/${slugify(url)}`}>
                     {region.name}
                   </Link>
                 </div>

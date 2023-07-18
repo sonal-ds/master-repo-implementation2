@@ -35,12 +35,28 @@ export const config: TemplateConfig = {
       "name",
       "slug",
 
+      "dm_directoryChildren.name",
+      "dm_directoryChildren.id",
+      "dm_directoryChildren.slug",
+      "dm_directoryChildren.dm_baseEntityCount",
+      "dm_directoryChildren.address",
+      "dm_directoryChildren.meta.entityType",
+      "dm_directoryChildren.dm_directoryChildren.name",
+      "dm_directoryChildren.dm_directoryChildren.id",
+      "dm_directoryChildren.dm_directoryChildren.slug",
+      "dm_directoryChildren.dm_directoryChildren.address",
+      "dm_directoryChildren.dm_directoryChildren.dm_baseEntityCount",
+      "dm_directoryChildren.dm_directoryChildren.meta.entityType",
+      "dm_directoryChildren.dm_directoryChildren.dm_directoryChildren.name",
+      "dm_directoryChildren.dm_directoryChildren.dm_directoryChildren.id",
+      "dm_directoryChildren.dm_directoryChildren.dm_directoryChildren.slug",
+      "dm_directoryChildren.dm_directoryChildren.dm_directoryChildren.address",
+      "dm_directoryChildren.dm_directoryChildren.dm_directoryChildren.meta.entityType",
+      "dm_directoryParents.id",
       "dm_directoryParents.name",
       "dm_directoryParents.slug",
-
-      /* DM children */
-      "dm_directoryChildren.name",
-      "dm_directoryChildren.slug",
+      "dm_directoryParents.address",
+      "dm_directoryParents.meta.entityType",
     ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
@@ -127,7 +143,7 @@ const country: Template<CountryTemplateProps> = ({
   __meta,
   breadcrumbs,
 }: CountryTemplateProps) => {
-  const { _site, meta, slug, dm_directoryChildren } = document;
+  const { _site, meta, slug, dm_directoryChildren, dm_directoryParents, dm_baseEntityCount } = document;
 
   return (
     <div id="main">
@@ -141,17 +157,22 @@ const country: Template<CountryTemplateProps> = ({
         <Breadcrumbs baseUrl="" breadcrumbs={breadcrumbs} />
         <h1>Country</h1>
         <div className="directory-children">
+          {console.log(dm_directoryParents,'dm_directoryParents')}
+ 
           {dm_directoryChildren &&
             dm_directoryChildren.map((region: DirectoryChild) => {
-              const url = region.slug;
+              const url = dm_directoryParents.map((e)=>{return e.name}) + "/" + document.slug + "/" + region.slug + ".html"
+              {console.log(region,'region')}
+          
               return (
                 <div className="directory-children-card" key={region.slug}>
                   <Link className="directory-children-name" href={`/${url}`}>
-                    {region.name}
+                    {region.name} {region.dm_directoryChildren.length}
                   </Link>
                 </div>
               );
-            })}
+           
+          })}
         </div>
       </PageLayout>
     </div>

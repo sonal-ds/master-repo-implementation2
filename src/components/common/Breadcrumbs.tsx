@@ -1,6 +1,7 @@
 import { Link } from "@yext/pages/components";
 import * as React from "react";
 import { ReactNode } from "react";
+import { slugify } from "../../config/GlobalFunctions";
 // import { Link } from "@yext/pages/components";
 
 export interface BreadcrumbItemProps {
@@ -46,9 +47,9 @@ const Breadcrumbs = (props: BreadcrumbsProps) => {
               return (
                 <li className="breadcrumb-item flex" key={index}>
                   {isFirst ? (
-                    <BreadcrumbItem name={"Home"} url={isLast ? "" : baseUrl + slug} {...props} />
+                    <BreadcrumbItem name={"Home"} url="/stores-directory.html" {...props} />
                   ) : (
-                    <BreadcrumbItem name={name} url={isLast ? "" : baseUrl + slug} {...props} />
+                    <BreadcrumbItem name={name} url={isLast ? "" : baseUrl + slugify(slug)} {...props} />
                   )}
                   {!isLast && <span className="breadcrumb-separator">{separator}</span>}
                 </li>
