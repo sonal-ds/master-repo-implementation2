@@ -69,7 +69,7 @@ const LocationCard = ({ location, meta }: LocationCardProps) => {
     >
       <div className="icon-row">
         <div className="icon addressIcon"></div>
-        <Link className="location-name" href={`/${url}`}>
+        <Link className="location-name" href={`${url}`}>
           {location.rawData.name}
         </Link>
         <Address address={location.rawData.address} />
