@@ -90,7 +90,7 @@ export const getBreadcrumb = <DataType, Document>(
     let slug = YEXT_PUBLIC_WEBSITE_URL;
     data.forEach((element: DataType, index: number) => {
       if (element.slug && index >= skip) {
-        slug += `/${element.slug}${useHtml && !isDevelopment ? ".html" : ""}`;
+        slug += `${element.slug}${useHtml && !isDevelopment ? ".html" : ""}`;
         breadcrumbs.push({
           slug: slug,
           name: element.name,
