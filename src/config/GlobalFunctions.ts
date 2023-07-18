@@ -27,7 +27,7 @@ export const getLink = <Document>(document: Document, meta: TemplateMeta, isRecu
   if (!isDevelopment && isRecursive) {
     url = getRecursiveData(document, meta, skip, useHtml, useBaseUrl);
   }
-  return `${slugify(url)}`;
+  return `${url}`;
 };
 
 export const getRecursiveData = <DataType>(element: DataType, meta: TemplateMeta, skip = 0, useHtml = false, useBaseUrl = false) => {
