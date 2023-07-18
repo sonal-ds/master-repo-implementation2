@@ -17,6 +17,7 @@ export const config: TemplateConfig = {
     $id: "location",
     filter: {
       entityTypes: ["location"],
+      savedFilterIds:["1220875870"]
     },
     fields: [
       "id",
@@ -49,7 +50,7 @@ export const config: TemplateConfig = {
 
 export const getPath: GetPath<TemplateProps> = ({ document, __meta }) => {
   console.log('document', document);
-  if (__meta.mode === "development") {
+  if (__meta.mode === "production") {
     return document.slug;
   } else {
     return getLink(document, __meta, true, 0, true);
